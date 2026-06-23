@@ -4,12 +4,12 @@
   "nofaDiganti": "",
   "kdJenisTransaksi": "TD.00301",
   "keteranganTambahan": { "kode": "", "nomorDokumenPendukung": "" },
-  "masaPajak": "11",
-  "tahunPajak": "2024",
-  "tanggalFaktur": "2024-11-16",
-  "noInvoice": "INV-2024-001",
+  "masaPajak": "<month now>",
+  "tahunPajak": "<year now>",
+  "tanggalFaktur": "<use date now, format YYYY-MM-DD>",
+  "noInvoice": "INV-2026-001",
   "barangJasa": [
-    {
+    { 
       "jenis": "BARANG",
       "nama": "Cordless Brad Nailer INGCO CBNLI2028",
       "kode": "845900",
@@ -43,13 +43,5 @@
   "totalDppLain": 3763500,
   "totalPpn": 413985,
   "totalPpnBm": 0,
-  "penandatangan": {
-    "npwp": "1305202311840002",
-    "nama": "FERRY IRAWAN",
-    "jabatan": "CEO",
-    "kota": "DKI Jakarta",
-    "passphrase": "<digital-cert-passphrase>"
-  },
-  "pembuatFaktur": { "npwp": "1305202311840002", "nama": "FERRY IRAWAN" },
   "nitkuPkp": { "nitku": "1091031210910416000001", "nama": "Cabang Jakarta" }
 }
