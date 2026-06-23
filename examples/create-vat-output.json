@@ -1,0 +1,55 @@
+{
+  "autoUploadDjp": false,
+  "pengganti": false,
+  "nofaDiganti": "",
+  "kdJenisTransaksi": "TD.00301",
+  "keteranganTambahan": { "kode": "", "nomorDokumenPendukung": "" },
+  "masaPajak": "11",
+  "tahunPajak": "2024",
+  "tanggalFaktur": "2024-11-16",
+  "noInvoice": "INV-2024-001",
+  "barangJasa": [
+    {
+      "jenis": "BARANG",
+      "nama": "Cordless Brad Nailer INGCO CBNLI2028",
+      "kode": "845900",
+      "jumlah": 1,
+      "kodeSatuan": "UM.0021",
+      "harga": 3763500,
+      "totalHarga": "3763500",
+      "diskon": 0,
+      "tarifPpn": 11,
+      "dpp": 3763500,
+      "cekDppLain": false,
+      "dppLain": 3763500,
+      "ppn": 413985,
+      "tarifPpnbm": 0,
+      "ppnbm": 0
+    }
+  ],
+  "lawanTransaksi": {
+    "identityType": "NPWP",
+    "identityValue": "1091031210911629",
+    "nitku": "1091031210911629000000",
+    "nama": "Kongsi Tirta",
+    "telp": "0218720712",
+    "kodeNegara": "IDN",
+    "alamatJalan": "Gatot Subroto 23, Jakarta Selatan, DKI Jakarta 12990",
+    "kota": "DKI Jakarta",
+    "email": ""
+  },
+  "terminPembayaran": { "type": "NORMAL", "dpp": 0, "ppn": 0, "ppnbm": 0, "nofa": "" },
+  "totalDpp": 3763500,
+  "totalDppLain": 3763500,
+  "totalPpn": 413985,
+  "totalPpnBm": 0,
+  "penandatangan": {
+    "npwp": "1305202311840002",
+    "nama": "FERRY IRAWAN",
+    "jabatan": "CEO",
+    "kota": "DKI Jakarta",
+    "passphrase": "<digital-cert-passphrase>"
+  },
+  "pembuatFaktur": { "npwp": "1305202311840002", "nama": "FERRY IRAWAN" },
+  "nitkuPkp": { "nitku": "1091031210910416000001", "nama": "Cabang Jakarta" }
+}

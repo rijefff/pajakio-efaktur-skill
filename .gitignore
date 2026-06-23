@@ -1,0 +1,15 @@
+# Secrets — never commit tokens or certificates
+.env
+.env.*
+*.token
+*.pem
+*.p12
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
