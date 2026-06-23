@@ -1,5 +1,10 @@
 # Pajak.io e-Faktur — Agent Skill
 
+> ⚠️ **Experimental.** This project is an early-stage experiment and is **not
+> production-ready**. The skill, payloads, and behavior may change without
+> notice. Test everything in the **sandbox** environment first, and do not rely
+> on it for live tax filings yet. Use at your own risk.
+
 An **Agent Skill** that teaches AI agents (Claude Code, Cursor, and other
 agentic tools) how to create and manage Indonesian tax invoices (**Faktur
 Pajak**) through the [Pajak.io](https://pajak.io) Open API for CTAS / Coretax.

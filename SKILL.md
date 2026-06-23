@@ -8,6 +8,10 @@ status verification (VSWP).
 
 Version: based on Pajak.io Open API Documentation **v3.0.5**.
 
+> ⚠️ **Experimental — not production-ready.** This skill is an early-stage
+> experiment and may change without notice. Default to the **sandbox**
+> environment and do not use it for live DGT filings until it has been validated.
+
 ---
 
 ## ⚠️ Safety rules (read first)
