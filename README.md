@@ -12,7 +12,7 @@ Pajak**) through the [Pajak.io](https://pajak.io) Open API for CTAS / Coretax.
 With this skill loaded, a Pajak.io customer can do things like:
 
 > "Buatkan faktur penjualan ke PT Kongsi Tirta, 1 unit nailer Rp3.763.500,
-> PPN 11%, masa pajak November 2024."
+> PPN 11%, masa pajak Januari 2025."
 
 …and the agent will verify the buyer's NPWP, build the payload, create a **draft**
 VAT Output, and ask for confirmation before uploading it to DGT.
@@ -23,6 +23,7 @@ VAT Output, and ask for confirmation before uploading it to DGT.
 |------|---------|
 | [`SKILL.md`](./SKILL.md) | The agent skill — auth, endpoints, safety rules, payloads |
 | [`examples/create-vat-output.json`](./examples/create-vat-output.json) | Sample Create VAT Output request body |
+| [`.env.sandbox`](./.env.sandbox) / [`.env.staging`](./.env.staging) | Env templates (placeholders only) — copy to `.env` |
 
 ## Safety first
 
@@ -35,12 +36,22 @@ The skill is built to be safe by default:
 
 ## Quick start
 
-1. Get a Pajak.io Open API token from `my.pajak.io` (or support).
-2. Base64-encode it and expose it as an environment variable:
+1. Get a Pajak.io Open API token and your **company ID** from `my.pajak.io`
+   (or the H2H team).
+2. Copy a template and fill in your real values:
    ```bash
-   export PAJAKIO_TOKEN="<base64-encoded-token>"
-   export PAJAKIO_BASE_URL="https://sandbox-openapi.pajak.io"   # sandbox first
+   cp .env.sandbox .env        # .env is gitignored; templates are safe to commit
+   # then edit .env:
+   #   PAJAKIO_TOKEN=<base64-encoded-token>
+   #   PAJAKIO_BASE_URL=https://sandbox-openapi.pajak.io   # sandbox first
+   #   PAJAKIO_COMPANY_ID=<company-id-pajakio>
    ```
+   Load it into your shell before calling the API:
+   ```bash
+   set -a; source .env; set +a
+   ```
+   Note: every request also needs the headers `companyId`,
+   `isJsonUsingCallback: false`, and `isFileUsingCallback: false` (see `SKILL.md`).
 3. Point your agent at `SKILL.md` and ask it to create a VAT Output.
 
 ## Environments

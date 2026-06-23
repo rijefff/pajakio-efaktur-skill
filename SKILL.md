@@ -41,13 +41,27 @@ Pajak.io authenticates with an **API Key** in the `Authorization` header.
 2. **Base64-encode** the raw token.
 3. Send the encoded value in the `Authorization` header.
 
+### Required headers
+
+Every request must send **all** of the following headers:
+
 ```
 Authorization: <base64-encoded-user-token>
+companyId: <your-company-id>
+isJsonUsingCallback: false
+isFileUsingCallback: false
 Content-Type: application/json
 ```
 
-Recommended: provide the token via an environment variable (e.g.
-`PAJAKIO_TOKEN`), never hard-code it in prompts.
+- `companyId` — numeric ID of your company / PKP in Pajak.io (from `my.pajak.io`
+  or the H2H team). Missing it returns `400 Required request header 'companyId'
+  ... is not present`.
+- `isJsonUsingCallback` / `isFileUsingCallback` — set both to `false` for
+  synchronous responses (you get the result in the HTTP response body). Both are
+  mandatory; omitting either returns a `400`.
+
+Recommended: provide token and IDs via environment variables (e.g.
+`PAJAKIO_TOKEN`, `PAJAKIO_COMPANY_ID`), never hard-code them in prompts.
 
 ### Environments
 
@@ -157,10 +171,10 @@ NPWP before creating a VAT Output.**
   "nofaDiganti": "",
   "kdJenisTransaksi": "TD.00301",
   "keteranganTambahan": { "kode": "", "nomorDokumenPendukung": "" },
-  "masaPajak": "11",
-  "tahunPajak": "2024",
-  "tanggalFaktur": "2024-11-16",
-  "noInvoice": "INV-2024-001",
+  "masaPajak": "01",
+  "tahunPajak": "2025",
+  "tanggalFaktur": "2025-01-15",
+  "noInvoice": "INV-2025-001",
   "barangJasa": [
     {
       "jenis": "BARANG",
@@ -229,10 +243,16 @@ NPWP before creating a VAT Output.**
   tax-invoice number) is required.
 - `kdJenisTransaksi` — DGT transaction-type code, e.g. `TD.00301` (to non-VAT
   collector). See the DGT reference for the full list.
+- `tanggalFaktur` — must be **on or after 1 January 2025**. An earlier date
+  returns `400 Tidak dapat membuat faktur dengan tanggalFaktur sebelum 1 Januari
+  2025`. Keep `masaPajak`/`tahunPajak` consistent with it.
 - `terminPembayaran.type` — `NORMAL`, `UANG_MUKA` (down payment), or `PELUNASAN`
   (repayment). For `NORMAL`, set its `dpp`/`ppn`/`ppnbm` to `0` and `nofa` to `""`.
 - `penandatangan` — optional; if present, all its sub-fields are mandatory.
-  `passphrase` is the digital-certificate passphrase — handle as a secret.
+  `passphrase` is the digital-certificate passphrase — handle as a secret. The
+  draft is created successfully even when this block is omitted.
+- `pembuatFaktur` — optional; can be omitted for a draft (see
+  `examples/create-vat-output.json`, which leaves it out).
 
 ---
 
@@ -241,6 +261,9 @@ NPWP before creating a VAT Output.**
 ```bash
 curl -X POST "$PAJAKIO_BASE_URL/efaktur/v3/penjualan" \
   -H "Authorization: $PAJAKIO_TOKEN" \
+  -H "companyId: $PAJAKIO_COMPANY_ID" \
+  -H "isJsonUsingCallback: false" \
+  -H "isFileUsingCallback: false" \
   -H "Content-Type: application/json" \
   -d @create-vat-output.json
 ```
@@ -250,6 +273,9 @@ Then upload the returned draft:
 ```bash
 curl -X POST "$PAJAKIO_BASE_URL/efaktur/v3/penjualan/upload" \
   -H "Authorization: $PAJAKIO_TOKEN" \
+  -H "companyId: $PAJAKIO_COMPANY_ID" \
+  -H "isJsonUsingCallback: false" \
+  -H "isFileUsingCallback: false" \
   -H "Content-Type: application/json" \
   -d '{ "transactionId": "6fb7e0fa-92cd-4d27-863e-b9433b37e81e" }'
 ```

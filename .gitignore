@@ -5,6 +5,10 @@
 *.pem
 *.p12
 
+# Template env files (placeholders only — safe to commit)
+!.env.sandbox
+!.env.staging
+
 # OS / editor
 .DS_Store
 Thumbs.db
